@@ -119,22 +119,22 @@
     <div class="container">
         <div class="item-box">
             <div class="item-title">创意智造</div>
-            <div class="item item1" onclick="openUrl(1)"></div>
+            <div class="item item1" onclick="checkAndGo(1)"></div>
         </div>
 
         <div class="item-box">
             <div class="item-title">编程机器人</div>
-            <div class="item item2" onclick="openUrl(2)"></div>
+            <div class="item item2" onclick="checkAndGo(2)"></div>
         </div>
 
         <div class="item-box">
             <div class="item-title">编程无人机</div>
-            <div class="item item3" onclick="openUrl(3)"></div>
+            <div class="item item3" onclick="checkAndGo(3)"></div>
         </div>
 
         <div class="item-box">
             <div class="item-title">信息科技</div>
-            <div class="item item4" onclick="openUrl(4)"></div>
+            <div class="item item4" onclick="checkAndGo(4)"></div>
         </div>
     </div>
 
@@ -144,15 +144,33 @@
     </div>
 
     <script>
-        function openUrl(type) {
-            let url = ''
-            switch (type) {
-                case 1: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break
-                case 2: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break
-                case 3: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break
-                case 4: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break
+        // 先验证验证码，再跳转
+        function checkAndGo(type) {
+            // 弹出输入框
+            let code = prompt("请输入验证码领取资料：", "");
+
+            // 如果没输入
+            if (!code) {
+                alert("请输入验证码！");
+                return;
             }
-            window.open(url, '_blank')
+
+            // 验证是否正确
+            if (code !== "jusai") {
+                alert("验证码错误！");
+                return;
+            }
+
+            // 正确 → 跳转对应链接
+            let url = '';
+            switch (type) {
+                case 1: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break;
+                case 2: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break;
+                case 3: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break;
+                case 4: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break;
+            }
+
+            window.open(url, '_blank');
         }
     </script>
 </body>
