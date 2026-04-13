@@ -10,50 +10,106 @@
             box-sizing: border-box;
         }
 
+        /* 全局科技风格 */
         body {
-            padding: 60px 20px;
-            background: #f5f7fa;
+            background: #0a0e27;
+            background-image: linear-gradient(135deg, #0a0e27 0%, #121a33 100%);
+            color: #fff;
             font-family: "Microsoft YaHei", sans-serif;
+            min-height: 100vh;
+            padding: 80px 20px;
         }
 
+        /* 主标题 */
         .title {
             text-align: center;
-            font-size: 32px;
-            margin-bottom: 50px;
-            color: #333;
+            font-size: 42px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #4fc9ff, #7b61ff);
+            -webkit-background-clip: text;
+            color: transparent;
+            margin-bottom: 70px;
+            letter-spacing: 2px;
         }
 
+        /* 布局容器 */
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
+            gap: 40px;
         }
 
-        .item {
-            height: 200px;
-            border-radius: 16px;
+        /* 单个模块包装 */
+        .item-box {
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        /* 模块标题 */
+        .item-title {
             font-size: 24px;
-            font-weight: bold;
-            color: #fff;
+            font-weight: 600;
+            text-align: center;
+            color: #e0eaff;
+            letter-spacing: 1px;
+        }
+
+        /* 科技风卡片 */
+        .item {
+            height: 220px;
+            border-radius: 20px;
             cursor: pointer;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
-            transition: all 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
 
+        /*  hover 光效动效 */
         .item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 16px 40px rgba(79, 201, 255, 0.2);
         }
 
-        .item1 { background: #42b983; }
-        .item2 { background: #5755fe; }
-        .item3 { background: #ff7d00; }
-        .item4 { background: #722ed1; }
+        /* 四个背景图 */
+        .item1 {
+            background-image: url("https://picsum.photos/id/111/800/400");
+        }
+        .item2 {
+            background-image: url("https://picsum.photos/id/112/800/400");
+        }
+        .item3 {
+            background-image: url("https://picsum.photos/id/113/800/400");
+        }
+        .item4 {
+            background-image: url("https://picsum.photos/id/114/800/400");
+        }
+
+        /* -------- 底部文字 + 图片 -------- */
+        .bottom-wrap {
+            max-width: 1100px;
+            margin: 80px auto 0;
+            text-align: center;
+        }
+
+        .bottom-text {
+            font-size: 24px;
+            color: #c9d8ff;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+        }
+
+        .bottom-img {
+            max-width: 380px;
+            width: 100%;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
     </style>
 </head>
 
@@ -61,33 +117,41 @@
     <h1 class="title">课程资料中心</h1>
 
     <div class="container">
-        <div class="item item1" onclick="openUrl(1)">创意智造</div>
-        <div class="item item2" onclick="openUrl(2)">编程机器人</div>
-        <div class="item item3" onclick="openUrl(3)">编程无人机</div>
-        <div class="item4 item4" onclick="openUrl(4)">信息科技</div>
+        <div class="item-box">
+            <div class="item-title">创意智造</div>
+            <div class="item item1" onclick="openUrl(1)"></div>
+        </div>
+
+        <div class="item-box">
+            <div class="item-title">编程机器人</div>
+            <div class="item item2" onclick="openUrl(2)"></div>
+        </div>
+
+        <div class="item-box">
+            <div class="item-title">编程无人机</div>
+            <div class="item item3" onclick="openUrl(3)"></div>
+        </div>
+
+        <div class="item-box">
+            <div class="item-title">信息科技</div>
+            <div class="item item4" onclick="openUrl(4)"></div>
+        </div>
+    </div>
+
+    <div class="bottom-wrap">
+        <div class="bottom-text">123456789</div>
+        <img class="bottom-img" src="https://picsum.photos/id/115/600/300">
     </div>
 
     <script>
         function openUrl(type) {
-            // 在这里替换成你自己的百度网盘地址
             let url = ''
-
             switch (type) {
-                case 1:
-                    url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'
-                    break
-                case 2:
-                    url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'
-                    break
-                case 3:
-                    url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'
-                    break
-                case 4:
-                    url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'
-                    break
+                case 1: url = 'https://pan.baidu.com/s/xxxxxx创意智造'; break
+                case 2: url = 'https://pan.baidu.com/s/xxxxxx编程机器人'; break
+                case 3: url = 'https://pan.baidu.com/s/xxxxxx编程无人机'; break
+                case 4: url = 'https://pan.baidu.com/s/xxxxxx信息科技'; break
             }
-
-            // 新标签页打开
             window.open(url, '_blank')
         }
     </script>
