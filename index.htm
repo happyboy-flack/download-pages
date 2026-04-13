@@ -196,8 +196,8 @@
     <!-- 验证码弹窗 -->
     <div class="verify-modal" id="verifyModal">
         <div class="verify-box">
-            <div class="verify-title">请输入验证码</div>
-            <input type="text" class="verify-input" id="verifyInput" placeholder="请输入 jusai">
+            <div class="verify-title">请输入提取码</div>
+            <input type="text" class="verify-input" id="verifyInput" placeholder="请输入提取码">
             <button class="verify-btn" onclick="checkCode()">确认提交</button>
         </div>
     </div>
@@ -219,7 +219,7 @@
                 goLink(currentType);
                 closeVerify();
             } else {
-                alert("验证码错误！");
+                alert("提取码错误！");
             }
         }
 
