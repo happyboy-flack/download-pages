@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8" />
+    <title>课程资料中心</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            padding: 60px 20px;
+            background: #f5f7fa;
+            font-family: "Microsoft YaHei", sans-serif;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 50px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .item {
+            height: 200px;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+        }
+
+        .item1 { background: #42b983; }
+        .item2 { background: #5755fe; }
+        .item3 { background: #ff7d00; }
+        .item4 { background: #722ed1; }
+    </style>
+</head>
+
+<body>
+    <h1 class="title">课程资料中心</h1>
+
+    <div class="container">
+        <div class="item item1" onclick="openUrl(1)">创意智造</div>
+        <div class="item item2" onclick="openUrl(2)">编程机器人</div>
+        <div class="item item3" onclick="openUrl(3)">编程无人机</div>
+        <div class="item4 item4" onclick="openUrl(4)">信息科技</div>
+    </div>
+
+    <script>
+        function openUrl(type) {
+            // 在这里替换成你自己的百度网盘地址
+            let url = ''
+
+            switch (type) {
+                case 1:
+                    url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'
+                    break
+                case 2:
+                    url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'
+                    break
+                case 3:
+                    url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'
+                    break
+                case 4:
+                    url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'
+                    break
+            }
+
+            // 新标签页打开
+            window.open(url, '_blank')
+        }
+    </script>
+</body>
+</html>
