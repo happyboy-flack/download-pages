@@ -70,25 +70,17 @@
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
         }
 
-        /*  hover 光效动效 */
+        /* hover 光效动效 */
         .item:hover {
             transform: translateY(-10px) scale(1.02);
             box-shadow: 0 16px 40px rgba(79, 201, 255, 0.2);
         }
 
         /* 四个背景图 */
-        .item1 {
-            background-image: url("https://picsum.photos/id/111/800/400");
-        }
-        .item2 {
-            background-image: url("https://picsum.photos/id/112/800/400");
-        }
-        .item3 {
-            background-image: url("https://picsum.photos/id/113/800/400");
-        }
-        .item4 {
-            background-image: url("https://picsum.photos/id/114/800/400");
-        }
+        .item1 { background-image: url("https://picsum.photos/id/111/800/400"); }
+        .item2 { background-image: url("https://picsum.photos/id/112/800/400"); }
+        .item3 { background-image: url("https://picsum.photos/id/113/800/400"); }
+        .item4 { background-image: url("https://picsum.photos/id/114/800/400"); }
 
         /* -------- 底部文字 + 图片 -------- */
         .bottom-wrap {
@@ -110,6 +102,64 @@
             border-radius: 16px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
         }
+
+        /* 验证码输入框样式 */
+        .verify-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .verify-box {
+            background: #161d38;
+            padding: 40px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #4fc9ff;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .verify-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .verify-input {
+            width: 100%;
+            padding: 14px;
+            font-size: 18px;
+            border-radius: 8px;
+            border: none;
+            outline: none;
+            margin-bottom: 20px;
+            background: #0e1429;
+            color: #fff;
+            text-align: center;
+            border: 1px solid #4fc9ff;
+        }
+
+        .verify-btn {
+            padding: 12px 30px;
+            background: #4fc9ff;
+            color: #000;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .verify-btn:hover {
+            background: #3bb8f2;
+        }
     </style>
 </head>
 
@@ -119,22 +169,22 @@
     <div class="container">
         <div class="item-box">
             <div class="item-title">创意智造</div>
-            <div class="item item1" onclick="checkAndGo(1)"></div>
+            <div class="item item1" onclick="openVerify(1)"></div>
         </div>
 
         <div class="item-box">
             <div class="item-title">编程机器人</div>
-            <div class="item item2" onclick="checkAndGo(2)"></div>
+            <div class="item item2" onclick="openVerify(2)"></div>
         </div>
 
         <div class="item-box">
             <div class="item-title">编程无人机</div>
-            <div class="item item3" onclick="checkAndGo(3)"></div>
+            <div class="item item3" onclick="openVerify(3)"></div>
         </div>
 
         <div class="item-box">
             <div class="item-title">信息科技</div>
-            <div class="item item4" onclick="checkAndGo(4)"></div>
+            <div class="item item4" onclick="openVerify(4)"></div>
         </div>
     </div>
 
@@ -143,34 +193,57 @@
         <img class="bottom-img" src="https://picsum.photos/id/115/600/300">
     </div>
 
+    <!-- 验证码弹窗 -->
+    <div class="verify-modal" id="verifyModal">
+        <div class="verify-box">
+            <div class="verify-title">请输入验证码</div>
+            <input type="text" class="verify-input" id="verifyInput" placeholder="请输入 jusai">
+            <button class="verify-btn" onclick="checkCode()">确认提交</button>
+        </div>
+    </div>
+
     <script>
-        // 先验证验证码，再跳转
-        function checkAndGo(type) {
-            // 弹出输入框
-            let code = prompt("请输入验证码领取资料：", "");
+        let currentType = 1;
 
-            // 如果没输入
-            if (!code) {
-                alert("请输入验证码！");
-                return;
-            }
+        // 打开验证码弹窗
+        function openVerify(type) {
+            currentType = type;
+            document.getElementById("verifyModal").style.display = "flex";
+        }
 
-            // 验证是否正确
-            if (code !== "jusai") {
+        // 验证验证码
+        function checkCode() {
+            let code = document.getElementById("verifyInput").value.trim();
+
+            if (code === "jusai") {
+                goLink(currentType);
+                closeVerify();
+            } else {
                 alert("验证码错误！");
-                return;
             }
+        }
 
-            // 正确 → 跳转对应链接
-            let url = '';
+        // 关闭弹窗
+        function closeVerify() {
+            document.getElementById("verifyModal").style.display = "none";
+            document.getElementById("verifyInput").value = "";
+        }
+
+        // 跳转（不会被拦截）
+        function goLink(type) {
+            let url = "";
             switch (type) {
-                case 1: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break;
-                case 2: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break;
-                case 3: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break;
-                case 4: url = 'https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234'; break;
+                case 1: url = "https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234"; break;
+                case 2: url = "https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234"; break;
+                case 3: url = "https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234"; break;
+                case 4: url = "https://pan.baidu.com/s/1tOgtH_QBtcbJZKjTimCgcg?pwd=1234"; break;
             }
 
-            window.open(url, '_blank');
+            // ✅ 不会被浏览器拦截
+            let a = document.createElement("a");
+            a.href = url;
+            a.target = "_blank";
+            a.click();
         }
     </script>
 </body>
